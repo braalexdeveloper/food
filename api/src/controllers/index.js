@@ -113,7 +113,7 @@ const getRecipe = async (idRecipe) => {
 
 const postDiet = async (title, summary, healthScore, steps, image, diets) => {
     // VALIDO QUE TODOS LOS CAMPOS ESTEN LLENOS
-    if (!title || !summary || !healthScore || !steps || diets.length < 1) throw "Debe rellenar todos los campos.";
+    if (!title || !summary ) throw "Debe rellenar todos los campos.";//|| !healthScore || !steps || diets.length < 1
     // VERIFICO SI YA EXISTE EL NOMBRE EN LA BD
     const titleExist = await Recipe.findOne({
         where: {
@@ -142,6 +142,14 @@ const postDiet = async (title, summary, healthScore, steps, image, diets) => {
     newRecipe.addDiet(diet)
 
     return true
+}
+
+const deleteRecipe=async (id)=>{
+   const recipe=await Recipe.findByPk(id);
+   console.log(recipe)
+   if(recipe.name) throw "El ID de la receta no existe";
+   await Recipe.findByPk(id).then(info => info.destroy())
+   return "Recipe Eliminda"
 }
 
 
@@ -178,5 +186,6 @@ module.exports = {
     getRecipesApi,
     getRecipesDB,
     getAllRecipes,
-    getRecipe
+    getRecipe,
+    deleteRecipe
 }
