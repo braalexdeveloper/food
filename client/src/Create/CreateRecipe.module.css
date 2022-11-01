@@ -1,5 +1,5 @@
 .sectionCreate{
-    max-height: 900px;
+height: 1080px;
 }
 .form{
     background-color:#d1f7c3cb;
@@ -114,6 +114,9 @@
    }
 
    @media (max-width:650px){
+    .sectionCreate{
+        max-height: 900px;
+    }
     .form{
       
         width: 90%;

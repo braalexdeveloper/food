@@ -25,8 +25,11 @@ const Foods = () => {
    
 
     useEffect(() => {
-        dispatch(getAllRecipes());
-    }, [])
+        if(infoRecipes.length<1){
+            dispatch(getAllRecipes());
+        }
+        
+    }, [dispatch])
 
 
 

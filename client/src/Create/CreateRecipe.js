@@ -76,7 +76,7 @@ const CreateRecipe = () => {
     }
 
     const submitDisabled=()=>{
-        if(!input.title || !input.summary || !input.steps || !input.healthScore || input.diets.length<1 ){
+        if(!input.title || !input.summary || !input.steps || !input.healthScore || input.healthScore>100 || input.healthScore<1 || input.diets.length<1 ){
             return true
         }
         return false
@@ -103,7 +103,7 @@ const CreateRecipe = () => {
     useEffect(()=>{
    dispatch(getDiets())
   
-    },[])
+    },[dispatch])
 
     //const [create,setCreate]=useState(false)
     const resCreate=useSelector(state=>state.create)

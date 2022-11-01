@@ -23,10 +23,10 @@ return(
         <div className={styles.iconos}>
         <Link className={styles.view} to={'/home/'+props.recipe.id}>{/*<FontAwesomeIcon className={styles.view} icon={faMagnifyingGlass} />*/}View</Link>
            { /*<FontAwesomeIcon className={styles.edit} icon={faPen} />
-            <FontAwesomeIcon className={styles.delete} icon={faTrash} />*/}
+            <FontAwesomeIcon className={styles.delete} icon={faTrash} />  <button className={styles.edit}>Edit</button>*/}
            {props.recipe.fromDB ? <>
-            <button className={styles.edit}>Edit</button>
-            <button onClick={recipeDelete} className={styles.delete}>Delete</button>
+               <button className={styles.edit}>Edit</button>
+              <button onClick={recipeDelete} className={styles.delete}>Delete</button>
             </>
              : null} 
         </div>

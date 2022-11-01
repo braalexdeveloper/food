@@ -50,6 +50,7 @@ export  const getSearch=(name)=>async(dispatch)=>{
 }
 
 export const postRecipe=(objRecipe)=>(dispatch)=>{
+  dispatch({type:GET_ALL_RECIPES,payload:[]})
   fetch(baseUrl+'/recipes', {
     method: "POST",
     body: JSON.stringify(objRecipe),

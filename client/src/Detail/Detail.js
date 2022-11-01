@@ -26,7 +26,7 @@ const Detail = (props) => {
    useEffect(() => {
       dispatch(getRecipe(props.idRecipe))
       
-   }, [])
+   },[dispatch,props.idRecipe])
    return (
       <>
          <Nav />

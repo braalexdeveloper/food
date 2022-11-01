@@ -2,7 +2,9 @@ const axios = require('axios');
 const { Recipe, Diet } = require('../db.js');
 
 const cantRecetas = 100;
-
+//api key 2: d043af1cf26a4bf3bc96ff68a70cbfd6
+//api key 3: 3c886575f3304fe795128803b362847b
+//222ff6d2381e4f32b8ccdee8dcf7b87a
 const getRecipesApi = async () => {
     //OBTENFO LA INFO DE LA API
     const recipesApi = await axios.get('https://api.spoonacular.com/recipes/complexSearch?number=' + cantRecetas + '&addRecipeInformation=true&apiKey=' + process.env.MI_API_KEY)
@@ -152,6 +154,47 @@ const deleteRecipe=async (id)=>{
    return "Recipe Eliminda"
 }
 
+const updateRecipe=async(id,title,summary,healthScore,steps,image,diets)=>{
+
+const recipeExist=await Recipe.findAll({
+    where:{
+      id:id  
+     }
+}).catch((err)=>{
+  return {error:err}
+})
+
+if(Array.isArray(recipeExist)){
+    await Recipe.update({
+        title,
+        summary,
+        healthScore,
+        steps,
+        image
+    },{where:{id:id}})
+
+const diet = await Diet.findAll({
+        where: {
+            name: diets
+        }
+    });
+
+const arrayIdDiets=diet.map(el=>el.id);
+
+ const recipe=await Recipe.findByPk(id);
+ console.log(recipeExist)
+
+  recipe.setDiets(arrayIdDiets)
+   
+   return true
+}else{
+     return false 
+}
+  
+ 
+
+}
+
 
 const getDiets = async () => {
     // OBTENGO LA INFO DE LA API
@@ -187,5 +230,6 @@ module.exports = {
     getRecipesDB,
     getAllRecipes,
     getRecipe,
-    deleteRecipe
+    deleteRecipe,
+    updateRecipe
 }
