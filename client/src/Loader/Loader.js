@@ -7,7 +7,7 @@ function Loader(){
    }
  return(
     <>
-     <img src="https://acegif.com/wp-content/uploads/loading-13.gif" width={"200px"} height={"200px"} alt="cargando" />
+     <img src="https://media.tenor.com/On7kvXhzml4AAAAj/loading-gif.gif" width={"200px"} height={"200px"} alt="cargando" />
      <p style={colorText}>Cargando...</p> 
     </>
  )
